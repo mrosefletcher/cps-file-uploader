@@ -1,0 +1,13 @@
+:root{
+  --background: rgb(244, 247, 231);
+}
+html, body {
+  background-color: var(--background);
+  scroll-behavior: smooth;
+  transition: all 3s;
+  padding: 0;
+  margin: 0;
+  font-size: 17px;
+  line-height: 28px;
+  color: black;
+}
