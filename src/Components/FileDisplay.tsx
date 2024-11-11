@@ -108,7 +108,7 @@ export const StyledFile: React.FC<StyledFileProps> = ({
                 {children}
                 <FilePresent/>
                 <StyledFilename> {filename} </StyledFilename>
-                <SizeDisplay> {fileSize} MB</SizeDisplay>
+                <SizeDisplay> {fileSize} Bytes</SizeDisplay>
                 <StatusIcon toggle = {status}/>
             </DivFlexRow>
             </>
