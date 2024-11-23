@@ -15,20 +15,20 @@ const BUCKET = "cps-web-server-target";
 export default async function UploadToS3(file: File | null, dir:string){
     var fileContents = null;
     var uploadName = "";
-    // if (file) {
-    //         uploadName = file.name;
-    //         const fileReader = new FileReader();
-    //         fileReader.onload = () => {
-    //             fileContents = fileReader.result as string;
-    //         };
-    // } else { Promise.reject("tried to upload a null file")};
+    if (file) {
+        uploadName = file.name;
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            fileContents = fileReader.result as string;
+        };
+    } else { Promise.reject("tried to upload a null file")};
 
     try{
         await s3Client.send(
         new PutObjectCommand({
             Bucket: BUCKET,
-            Key: `cps-web-server-target/file1.txt`,
-            Body: `this is a test file`,
+            Key: `${uploadName}`,
+            Body: `${fileContents}`,
         }));
     }catch(e){
         console.log(e);
