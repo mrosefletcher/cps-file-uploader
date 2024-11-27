@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Afacad} from 'next/font/google';
+import { Noto_Sans} from 'next/font/google';
 import "./globals.css";
 
-const afacad = Afacad({ subsets: ['latin'] });
+
+const notoSans = Noto_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "CPS file uploader",
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={afacad.className}>
+      <body className={notoSans.className}>
         {children}
       </body>
     </html>

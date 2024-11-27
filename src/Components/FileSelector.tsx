@@ -8,6 +8,7 @@ import * as FileDisplay from './FileDisplay';
 import { Header4, Header5 } from '@/app/Theme/Typography';
 import * as Colors from '@/app/Theme/Colors';
 import * as Section from './Section';
+import * as S3Handler from '@/app/get-signed-url'
 
 
 const USERNAME: string = "1022Demo";
@@ -72,21 +73,35 @@ const FileSelector: FC = () => {
         }
     };
 
-    function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+
+    // function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+
+    //     e.preventDefault();
+    //     if (!inputRef || !inputRef.current) return;
+    //     Object.values(fileSet).forEach((value) => {
+    //         UploadToS3(value.file, USERNAME ).then(() => {
+    //             value.status = FileStatus.uploadSuccess;
+    //             updateSubmit();
+    //             }, () => {
+    //             console.log(`${value.file.name} failed to upload`);
+    //             value.status = FileStatus.uploadFail;
+    //             updateSubmit();
+    //         }
+    //         );
+    //     })
+    // };
+
+    async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
+        const {url, fields} = await fetch("http://localhost:8080/get-signed-url").then(response => response.json())
+        
         if (!inputRef || !inputRef.current) return;
-        Object.values(fileSet).forEach((value) => {
-            UploadToS3(value.file, USERNAME ).then(() => {
-                value.status = FileStatus.uploadSuccess;
-                updateSubmit();
-                }, () => {
-                console.log(`${value.file.name} failed to upload`);
-                value.status = FileStatus.uploadFail;
-                updateSubmit();
-            }
-            );
-        })
-    };
+            Object.values(fileSet).forEach((value) => {  
+                //for each file in the upload list:
+                value.file, USERNAME
+
+        );       
+    }
 
     function handleRemoveFile(file: File) {
         console.log(`removing ${file.name}`);
